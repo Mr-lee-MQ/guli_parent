@@ -1,0 +1,13 @@
+#设置端口
+server:
+  port: 8001
+
+spring:
+  #服务名
+  application:
+    name: service_edu
+  #环境设置
+  profiles:
+    active: dev
+
+
