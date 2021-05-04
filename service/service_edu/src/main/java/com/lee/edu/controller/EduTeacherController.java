@@ -56,7 +56,7 @@ public class EduTeacherController {
     @DeleteMapping("{id}")
     public R removeById(
             @ApiParam(name = "id",value = "讲师ID",readOnly = true)
-            @PathVariable String id){
+            @PathVariable long id){
 
         boolean flog = eduTeacherService.removeById(id);
         if (flog){
