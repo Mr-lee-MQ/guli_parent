@@ -20,8 +20,6 @@ public class  SwaggerConfig {
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .host("8001")
-                .host("8002")
                 .groupName("lee")
                 .apiInfo(webApiInfo())
                 .enable(true) //配置是否启用Swagger，如果是false，在浏览器将无法访问

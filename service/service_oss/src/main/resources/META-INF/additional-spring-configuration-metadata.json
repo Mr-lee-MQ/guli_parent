@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "aliyun.oss.file.endpoint",
-      "type": "java.lang.String",
-      "description": "Description for aliyun.oss.file.endpoint."
-  }
-] }
