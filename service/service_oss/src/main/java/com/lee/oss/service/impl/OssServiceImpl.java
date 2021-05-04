@@ -46,12 +46,15 @@ public class OssServiceImpl implements OssService {
             // 关闭OSSClient。
             ossClient.shutdown();
 
+            //把上传之后文件路径返回
+            //需要把上传到阿里云oss路径手动拼接起来
+            //观察路径 https://edu-0128.oss-cn-beijing.aliyuncs.com/body.png
+            return "https://"+bucketName+"."+endpoint+"/"+fileName;
+
+
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-
-
-
-        return null;
     }
 }
