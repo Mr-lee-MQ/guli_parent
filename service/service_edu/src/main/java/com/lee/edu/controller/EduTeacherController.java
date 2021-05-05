@@ -56,7 +56,7 @@ public class EduTeacherController {
     @DeleteMapping("{id}")
     public R removeById(
             @ApiParam(name = "id",value = "讲师ID",readOnly = true)
-            @PathVariable long id){
+            @PathVariable String id){
 
         boolean flog = eduTeacherService.removeById(id);
         if (flog){
@@ -176,7 +176,7 @@ public class EduTeacherController {
     //根据讲师ID查询
     @ApiOperation("根据ID查询讲师")
     @GetMapping("getTeacher/{id}")
-    public R getTeacher(@PathVariable Long id){
+    public R getTeacher(@PathVariable String id){
         EduTeacher eduTeacher = eduTeacherService.getById(id);
                 return R.ok().data("teacher",eduTeacher);
     }
