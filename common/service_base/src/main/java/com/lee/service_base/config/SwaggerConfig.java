@@ -4,6 +4,7 @@ package com.lee.service_base.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -16,8 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = {"com.lee"})
 public class  SwaggerConfig {
-
-    @Bean
+    @Bean()
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("lee")
