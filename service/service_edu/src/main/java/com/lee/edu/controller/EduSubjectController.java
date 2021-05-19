@@ -32,7 +32,7 @@ public class EduSubjectController {
     @PostMapping("/addSubject")
     public R addSubject(MultipartFile file){
     //得到上传过来的Excel文件，使用MultipartFile
-        subjectService.saveSubject(file);
+        subjectService.saveSubject(file,subjectService);
 
 
         return R.ok();
