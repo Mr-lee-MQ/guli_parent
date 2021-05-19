@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * 代码自动生成器
  */
 public class CodeGenerator {
-@Test
+    @Test
     public void main() {
         //需要构建一个 代码生成器 对象
         AutoGenerator mpg = new AutoGenerator();
@@ -49,7 +49,7 @@ public class CodeGenerator {
         //设置数据源
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8&autoReconnect=true&useSSL=false");
-        dsc.setDriverName("com.mysql.jc.jdbc.Driver");
+        dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         dsc.setDbType(DbType.MYSQL);
@@ -67,7 +67,7 @@ public class CodeGenerator {
 
         //策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_teacher");
+        strategy.setInclude("edu_subject");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
@@ -92,4 +92,3 @@ public class CodeGenerator {
     }
 
 }
-
