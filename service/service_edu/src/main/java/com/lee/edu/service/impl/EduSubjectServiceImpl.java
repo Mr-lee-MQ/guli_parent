@@ -5,6 +5,7 @@ import com.lee.edu.mapper.EduSubjectMapper;
 import com.lee.edu.service.EduSubjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -17,4 +18,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubject> implements EduSubjectService {
 
+    //添加课程分类
+    @Override
+    public void saveSubject(MultipartFile file) {
+
+    }
 }
