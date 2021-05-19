@@ -1,0 +1,16 @@
+package com.lee.edu.service;
+
+import com.lee.edu.entity.EduSubject;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * <p>
+ * 课程科目 服务类
+ * </p>
+ *
+ * @author lee
+ * @since 2021-05-19
+ */
+public interface EduSubjectService extends IService<EduSubject> {
+
+}
