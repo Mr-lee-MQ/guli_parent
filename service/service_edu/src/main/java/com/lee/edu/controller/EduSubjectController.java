@@ -2,14 +2,14 @@ package com.lee.edu.controller;
 
 
 import com.lee.common_utils.R;
+import com.lee.edu.entity.subject.OneSubject;
 import com.lee.edu.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -37,6 +37,19 @@ public class EduSubjectController {
 
         return R.ok();
     }
+
+    //课程分类列表（树形）
+    @GetMapping("getAllSubject")
+    public R getAllSubject(){
+
+        //返回的类型为list，泛型中的类为一级分类
+        List<OneSubject> list= subjectService.getAllOneTwoSubject();
+
+
+
+        return R.ok().data("list",list);
+    }
+
 
 }
 

@@ -14,12 +14,11 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectDate> {
     //解决方案：手动注入EduSubjectService
 
     public EduSubjectService subjectService;
+    //无参
+    public SubjectExcelListener(){}
     //有参
     public SubjectExcelListener(EduSubjectService subjectService) {
         this.subjectService = subjectService;
-    }
-    //无参
-    public SubjectExcelListener() {
     }
 
     //读取Excel内容，一行一行读取
@@ -28,13 +27,32 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectDate> {
         if (subjectDate==null){
             throw new GuLiException(20001,"Excel文件数据为空");
         }
-        //一行一行读取，每次读取有两个值，第一个值为一级分类，第二个值为二级分类
-        //判断一级分类是否重复
-        EduSubject oneSubject = this.existOneSubject(subjectService, subjectDate.getOneSubjectName());
-        if (oneSubject==null){//没有相同一级分类，进行添加
 
+        //一行一行读取，每次读取都是两个值。第一个值为一级分类，第二个值为二级分类。
+        //判断一级分类是否重复
+        EduSubject existOneSubject = this.existOneSubject(subjectService, subjectDate.getOneSubjectName());
+
+        if (existOneSubject==null){//表中没有相同的一级分类，进行添加。
+
+             existOneSubject = new EduSubject();
+             existOneSubject.setParentId("0");
+             existOneSubject.setTitle(subjectDate.getOneSubjectName());//一级分类名称
+             subjectService.save(existOneSubject);
         }
 
+        //获取一级分类的id值
+        String pid = existOneSubject.getId();
+
+        //添加二级分类
+        //判断二级分类是否重复
+        EduSubject existTwoSubject = this.existTwoSubject(subjectService, subjectDate.getTwoSubjectName(), pid);
+
+        if (existTwoSubject==null){
+            existTwoSubject = new EduSubject();
+            existTwoSubject.setParentId(pid);
+            existTwoSubject.setTitle(subjectDate.getTwoSubjectName());//二级分类名称
+            subjectService.save(existTwoSubject);
+        }
 
     }
 
@@ -54,6 +72,7 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectDate> {
         wrapper.eq("title",name);
         wrapper.eq("parent_id",pid);
         return subjectService.getOne(wrapper);
+
 
     }
     @Override
