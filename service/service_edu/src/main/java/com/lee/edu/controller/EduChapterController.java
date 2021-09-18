@@ -1,9 +1,12 @@
 package com.lee.edu.controller;
 
-import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.lee.common_utils.R;
+import com.lee.edu.entity.chapter.ChapterVo;
+import com.lee.edu.service.EduChapterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: lee
@@ -14,4 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/eduservice/chapter")
 public class EduChapterController {
 
+    @Autowired
+    private EduChapterService eduChapterService;
+
+
+    @GetMapping("/getChapterVideo/{courseId}")
+    public R getAllChapterVideo(@PathVariable String courseId){
+
+       List<ChapterVo> list =  eduChapterService.getChapterVideoByCourseId(courseId);
+
+        return R.ok().data("allChapterVideo",list);
+    }
 }
