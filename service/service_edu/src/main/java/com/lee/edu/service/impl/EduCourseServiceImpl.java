@@ -9,7 +9,6 @@ import com.lee.edu.service.EduCourseDescriptionService;
 import com.lee.edu.service.EduCourseService;
 import com.lee.edu.mapper.EduCourseMapper;
 import com.lee.service_base.exceptionhandler.GuLiException;
-import com.sun.java.accessibility.util.GUIInitializedListener;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +52,7 @@ implements EduCourseService{
 
     //根据课程id查询课程信息
     @Override
-    public CourseInfoVo getgetCourseInfo(String courseId) {
+    public CourseInfoVo getCourseInfo(String courseId) {
 
         //1.查询课程表
 

@@ -77,4 +77,14 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
 
         return finalList;
     }
+    //删除章节
+    @Override
+    public void deleteChapter(String chapterId) {
+
+        //根据chapterId章节id查询小节表，如果能查出来小节，那么就不删除。
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id",chapterId);
+        int count = videoService.count(wrapper);
+
+    }
 }
