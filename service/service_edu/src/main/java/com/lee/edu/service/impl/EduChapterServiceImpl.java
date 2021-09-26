@@ -1,6 +1,7 @@
 package com.lee.edu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lee.edu.entity.EduChapter;
 import com.lee.edu.entity.EduVideo;
@@ -9,6 +10,7 @@ import com.lee.edu.entity.chapter.VideoVo;
 import com.lee.edu.service.EduChapterService;
 import com.lee.edu.mapper.EduChapterMapper;
 import com.lee.edu.service.EduVideoService;
+import com.lee.service_base.exceptionhandler.GuLiException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,12 +81,24 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
     }
     //删除章节
     @Override
-    public void deleteChapter(String chapterId) {
+    public boolean deleteChapter(String chapterId) {
 
         //根据chapterId章节id查询小节表，如果能查出来小节，那么就不删除。
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
         wrapper.eq("chapter_id",chapterId);
         int count = videoService.count(wrapper);
+        if (count>0){
+            //能查询出小节，不进行删除
+            throw new GuLiException(20001,"不能删除");
+
+        }else {
+            //查不出来小节
+            int result = baseMapper.deleteById(chapterId);
+
+            return result>0;
+
+
+        }
 
     }
 }

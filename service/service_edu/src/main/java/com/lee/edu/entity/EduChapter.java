@@ -2,6 +2,11 @@ package com.lee.edu.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
@@ -13,6 +18,7 @@ public class EduChapter implements Serializable {
     /**
      * 章节ID
      */
+    @TableId(value = "id")
     private String id;
 
     /**
@@ -33,11 +39,13 @@ public class EduChapter implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
     private static final long serialVersionUID = 1L;
